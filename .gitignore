@@ -1,0 +1,58 @@
+# Python
+*.pyc
+__pycache__
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+ENV.bak/
+
+# Django
+*.log
+*.pot
+*.mo
+*.po
+/manage.py
+/db.sqlite3
+/media/
+/staticfiles/
+/local_settings.py
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+
+# Docs
+docs/_build/
+
+# Env vars
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.docker
+.env.example
