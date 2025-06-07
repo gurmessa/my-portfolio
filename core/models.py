@@ -14,12 +14,16 @@ class TechStackCategory(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name = 'Tech Stack Category'
+        verbose_name_plural = 'Tech Stack Categories'
 
 # TechStack model
 class TechStack(models.Model):
     name = models.CharField(max_length=255)
     category = models.ForeignKey(TechStackCategory, on_delete=models.CASCADE, related_name='tech_stacks')
-    image = models.URLField(blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name

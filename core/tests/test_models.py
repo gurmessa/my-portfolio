@@ -12,10 +12,10 @@ class TechStackModelTest(TestCase):
         self.category = TechStackCategory.objects.create(name='Web Development', slug='web-development')
 
     def test_create_tech_stack(self):
-        tech_stack = TechStack.objects.create(name='Django', category=self.category, image='http://example.com/django.png')
+        tech_stack = TechStack.objects.create(name='Django', category=self.category, image_url='http://example.com/django.png')
         self.assertEqual(str(tech_stack), 'Django')
         self.assertEqual(tech_stack.category, self.category)
-        self.assertEqual(tech_stack.image, 'http://example.com/django.png')
+        self.assertEqual(tech_stack.image_url, 'http://example.com/django.png')
 
 class PortfolioProfileModelTest(TestCase):
     def test_create_portfolio_profile(self):
