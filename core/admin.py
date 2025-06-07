@@ -1,18 +1,25 @@
 from django.contrib import admin
 from .models import TechStackCategory, TechStack, PortfolioProfile
 
+class TechStackInline(admin.TabularInline):  # Or use StackedInline
+    model = TechStack
+    extra = 1  # Number of extra empty forms
+
+
 # Custom admin class for TechStackCategory
 class TechStackCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     search_fields = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
+    inlines = [TechStackInline]  # Inline TechStack model in the category admin
 
 # Custom admin class for TechStack
 class TechStackAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'image')
+    list_display = ('name', 'category', 'image_url')
     search_fields = ('name',)
     list_filter = ('category',)
-    readonly_fields = ('image',)
+
+
 
 # Custom admin class for PortfolioProfile
 class PortfolioProfileAdmin(admin.ModelAdmin):
@@ -27,8 +34,7 @@ class PortfolioProfileAdmin(admin.ModelAdmin):
             'fields': ('resume', 'github_profile_link', 'linkedin_profile_link', 'email', 'phone')
         }),
     )
-    readonly_fields = ('resume',)
-
+    
 # Register your models here.
 admin.site.register(TechStackCategory, TechStackCategoryAdmin)
 admin.site.register(TechStack, TechStackAdmin)
