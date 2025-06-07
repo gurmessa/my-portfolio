@@ -23,7 +23,6 @@ class PortfolioProfileModelTest(TestCase):
             full_name='John Doe',
             job_title='Software Engineer',
             headline='Experienced Software Engineer',
-            short_bio='A software engineer with over 10 years of experience.',
             about_title='About Me',
             about_description='Detailed description about John Doe.',
             github_profile_link='http://github.com/johndoe',
@@ -35,7 +34,6 @@ class PortfolioProfileModelTest(TestCase):
         self.assertEqual(profile.full_name, 'John Doe')
         self.assertEqual(profile.job_title, 'Software Engineer')
         self.assertEqual(profile.headline, 'Experienced Software Engineer')
-        self.assertEqual(profile.short_bio, 'A software engineer with over 10 years of experience.')
         self.assertEqual(profile.about_title, 'About Me')
         self.assertEqual(profile.about_description, 'Detailed description about John Doe.')
         self.assertEqual(profile.github_profile_link, 'http://github.com/johndoe')
@@ -48,7 +46,6 @@ class PortfolioProfileModelTest(TestCase):
             full_name='John Doe',
             job_title='Software Engineer',
             headline='Experienced Software Engineer',
-            short_bio='A software engineer with over 10 years of experience.',
             about_title='About Me',
             about_description='Detailed description about John Doe.',
             github_profile_link='http://github.com/johndoe',
@@ -61,7 +58,6 @@ class PortfolioProfileModelTest(TestCase):
                 full_name='Jane Doe',
                 job_title='Software Engineer',
                 headline='Experienced Software Engineer',
-                short_bio='A software engineer with over 10 years of experience.',
                 about_title='About Me',
                 about_description='Detailed description about Jane Doe.',
                 github_profile_link='http://github.com/janedoe',
