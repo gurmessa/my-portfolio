@@ -28,8 +28,7 @@ class TechStack(models.Model):
 class PortfolioProfile(SingletonModel):
     full_name = models.CharField(max_length=255, blank=True, null=True)
     job_title = models.CharField(max_length=255, blank=True, null=True)
-    headline = models.CharField(max_length=255, blank=True, null=True)
-    short_bio = models.TextField(blank=True, null=True)
+    headline = models.TextField(blank=True, null=True)
     about_title = models.CharField(max_length=255, blank=True, null=True)
     about_description = models.TextField(blank=True, null=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
