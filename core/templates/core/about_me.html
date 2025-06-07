@@ -1,0 +1,61 @@
+
+<section id="about" class="py-20 relative" x-data x-init="
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.classList.add('opacity-100', 'translate-y-0');
+    }
+  });
+});
+">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Title -->
+  <div class="text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition duration-700">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+      About <span class="text-purple-400">Me</span>
+    </h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
+  </div>
+
+  <!-- Grid layout -->
+  <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+          <h3 class="text-2xl font-bold text-white mb-4">
+            {{ portfolio_profile.about_title }}
+          </h3>
+          <p class="text-gray-400 text-lg leading-relaxed mb-6">
+            {{ portfolio_profile.about_description }}
+        </p>
+
+        </div>
+
+        <div class="space-y-8 animate-on-scroll opacity-0 translate-y-10 transition duration-700">
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {% for category in tech_stack_categories %}
+                <div
+                  class="group p-6 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
+                >
+                  <div class="flex items-center mb-4">
+                    <div class="p-2 bg-purple-600/20 rounded-lg group-hover:bg-purple-600/30 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-code-icon lucide-code">
+                        <path d="m16 18 6-6-6-6" />
+                        <path d="m8 6-6 6 6 6" />
+                      </svg>
+                    </div>
+                    <h4 class="text-white font-semibold ml-3">{{ category.name }}</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm">
+                    {{ category.tech_stacks.all|join:", " }}
+                  </p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+  </div>
+</div>
+</section>
