@@ -38,10 +38,10 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
                     <template x-for="item in [
-                    { name: 'Home', href: '#home' },
-                    { name: 'About', href: '#about' },
-                    { name: 'Projects', href: '#projects' },
-                    { name: 'Experience', href: '#experience' },
+                    { name: 'Home', href: '{% url 'core:home' %}' },
+                    { name: 'About', href: '{% url 'core:home' %}#about' },
+                    { name: 'Projects', href: '{% url 'projects:project_list' %}' },
+                    { name: 'Experience', href: '{% url 'core:home' %}#experience' },
                     { name: 'Blogs', href: '{% url 'blogs:blog_list' %}' },
                     ]" :key="item.name">
                     <a
@@ -82,10 +82,10 @@
                 >
                 <div class="px-2 pt-2 pb-3 space-y-1">
                     <template x-for="item in [
-                    { name: 'Home', href: '#home' },
-                    { name: 'About', href: '#about' },
-                    { name: 'Projects', href: '#projects' },
-                    { name: 'Experience', href: '#experience' },
+                    { name: 'Home', href: '{% url 'core:home' %}' },
+                    { name: 'About', href: '{% url 'core:home' %}#about' },
+                    { name: 'Projects', href: '{% url 'projects:project_list' %}' },
+                    { name: 'Experience', href: '{% url 'core:home' %}#experience' },
                     { name: 'Blogs', href: '{% url 'blogs:blog_list' %}' },
                     ]" :key="item.name">
                     <a
