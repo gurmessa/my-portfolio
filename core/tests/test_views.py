@@ -36,3 +36,15 @@ class HomeViewTest(TestCase):
             self.tech_stack,
             response.context["tech_stack_categories"][0].tech_stacks.all(),
         )
+
+    def test_only_featured_projects_displayed(self):
+        # Assuming you have a Project model and a way to create projects
+        from projects.tests.factories import ProjectFactory
+        featured_project = ProjectFactory( name="Project 1", featured=True)
+        ProjectFactory(name="Project 2", featured=False)
+        
+        response = self.client.get(reverse("core:home"))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("projects", response.context)
+        self.assertEqual(len(response.context["projects"]), 1)
+        self.assertIn(featured_project, response.context["projects"])
