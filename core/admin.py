@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import TechStackCategory, TechStack, PortfolioProfile
+from .models import (
+    TechStackCategory,
+    TechStack,
+    PortfolioProfile,
+    WorkExperience,
+    WorkExperienceItem,
+)
 
 
 class TechStackInline(admin.TabularInline):
@@ -39,7 +45,20 @@ class PortfolioProfileAdmin(admin.ModelAdmin):
     )
 
 
+class WorkExperienceItemInline(admin.TabularInline):
+    model = WorkExperienceItem
+    extra = 2
+
+
+class WorkExperienceAdmin(admin.ModelAdmin):
+    list_display = ("company_name", "start_date", "end_date", "role", "location")
+    search_fields = ("company_name", "role", "location")
+    list_filter = ("start_date", "end_date")
+    inlines = [WorkExperienceItemInline]
+
+
 # Register your models here.
 admin.site.register(TechStackCategory, TechStackCategoryAdmin)
 admin.site.register(TechStack, TechStackAdmin)
 admin.site.register(PortfolioProfile, PortfolioProfileAdmin)
+admin.site.register(WorkExperience, WorkExperienceAdmin)

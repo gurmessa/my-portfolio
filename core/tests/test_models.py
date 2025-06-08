@@ -1,5 +1,11 @@
 from django.test import TestCase
-from core.models import TechStackCategory, TechStack, PortfolioProfile
+from core.models import (
+    TechStackCategory,
+    TechStack,
+    PortfolioProfile,
+    WorkExperience,
+    WorkExperienceItem,
+)
 
 
 class TechStackCategoryModelTest(TestCase):
@@ -78,3 +84,59 @@ class PortfolioProfileModelTest(TestCase):
                 email="janedoe@example.com",
                 phone="0987654321",
             )
+
+
+class WorkExperienceModelTest(TestCase):
+    def setUp(self):
+        self.category = TechStackCategory.objects.create(name="Web Development")
+        self.tech_stack = TechStack.objects.create(
+            name="Python", category=self.category
+        )
+        self.work_experience = WorkExperience.objects.create(
+            start_date="2023-01-01",
+            end_date="2023-12-31",
+            company_name="Tech Corp",
+            role="Software Engineer",
+            location="San Francisco",
+        )
+        self.work_experience.tech_stacks.add(self.tech_stack)
+
+    def test_create_work_experience(self):
+        self.assertEqual(self.work_experience.company_name, "Tech Corp")
+
+    def test_work_experience_without_end_date(self):
+        self.work_experience.end_date = None
+        self.work_experience.save()
+
+    def test_work_experience_with_tech_stacks(self):
+        self.assertIn(self.tech_stack, self.work_experience.tech_stacks.all())
+
+
+class WorkExperienceItemModelTest(TestCase):
+    def setUp(self):
+        self.work_experience = WorkExperience.objects.create(
+            start_date="2023-01-01",
+            end_date="2023-12-31",
+            company_name="Tech Corp",
+            role="Software Engineer",
+            location="San Francisco",
+        )
+
+    def test_create_work_experience_item(self):
+        item = WorkExperienceItem.objects.create(
+            description="Responsible for developing new features.",
+            work_experience=self.work_experience,
+        )
+
+        self.assertEqual(str(item), "Responsible for developing new features.")
+        self.assertEqual(item.description, "Responsible for developing new features.")
+
+    def test_work_experience_item_relationship(self):
+
+        item = WorkExperienceItem.objects.create(
+            description="Responsible for developing new features.",
+            work_experience=self.work_experience,
+        )
+
+        self.assertEqual(item.work_experience, self.work_experience)
+        self.assertIn(item, self.work_experience.items.all())

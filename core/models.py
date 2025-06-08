@@ -32,10 +32,10 @@ class TechStack(models.Model):
 
 
 class PortfolioProfile(SingletonModel):
-    full_name = models.CharField(max_length=255, blank=True, null=True)
-    job_title = models.CharField(max_length=255, blank=True, null=True)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
+    job_title = models.CharField(max_length=100, blank=True, null=True)
     headline = models.TextField(blank=True, null=True)
-    about_title = models.CharField(max_length=255, blank=True, null=True)
+    about_title = models.CharField(max_length=150, blank=True, null=True)
     about_description = models.TextField(blank=True, null=True)
     resume = models.FileField(upload_to="resumes/", blank=True, null=True)
     github_profile_link = models.URLField(blank=True, null=True)
@@ -49,3 +49,25 @@ class PortfolioProfile(SingletonModel):
     class Meta:
         verbose_name = "Portfolio Profile"
         verbose_name_plural = "Portfolio Profile"
+
+
+class WorkExperience(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
+    company_name = models.CharField(max_length=150)
+    role = models.CharField(max_length=150)
+    location = models.CharField(max_length=150)
+    tech_stacks = models.ManyToManyField(TechStack, blank=True)
+
+    def __str__(self):
+        return f"{self.role} at {self.company_name}"
+
+
+class WorkExperienceItem(models.Model):
+    description = models.CharField(max_length=255)
+    work_experience = models.ForeignKey(
+        WorkExperience, on_delete=models.CASCADE, related_name="items"
+    )
+
+    def __str__(self):
+        return self.description

@@ -1,0 +1,113 @@
+
+        <!--<Experience />-->
+        <section id="experience" class="py-20 relative" 
+  x-data="experienceCarousel()"
+  x-init="init()"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 animate-fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        Work <span class="text-purple-400">Experience</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
+      <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+        My professional journey and the amazing companies I've had the privilege to work with.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-8">
+      <!-- Sidebar Navigation -->
+      <div class="lg:col-span-1">
+        <div class="bg-slate-800/30 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50 sticky top-24">
+          <h3 class="text-white font-semibold mb-4">Companies</h3>
+          <div class="space-y-2">
+            <template x-for="(exp, index) in experiences" :key="exp.id">
+              <button
+                @click="selectExperience(index)"
+                :class="selectedExperience === index
+                  ? 'w-full text-left p-3 rounded-lg transition-all duration-300 bg-purple-600/20 text-purple-300 border border-purple-500/30'
+                  : 'w-full text-left p-3 rounded-lg transition-all duration-300 text-gray-400 hover:text-gray-300 hover:bg-slate-700/50 border border-transparent'"
+              >
+                <div class="font-medium text-sm" x-text="exp.company"></div>
+                <div class="text-xs opacity-75" x-text="exp.position"></div>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Details -->
+      <div class="lg:col-span-3">
+        <div class="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 min-h-[600px]">
+          <div class="animate-fade-in" x-show="currentExperience">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold text-white mb-2" x-text="currentExperience.position"></h3>
+              <h4 class="text-xl text-purple-400 mb-4" x-text="currentExperience.company"></h4>
+
+              <div class="flex flex-wrap gap-4 text-gray-400 mb-6">
+                <div class="flex items-center gap-2">
+                  <!-- Replace these with your SVG icons or any other -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                  <span x-text="currentExperience.period"></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span x-text="currentExperience.location"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h5 class="text-white font-semibold mb-4">Key Responsibilities & Achievements:</h5>
+              <ul class="space-y-3">
+                <template x-for="(item, idx) in currentExperience.description" :key="idx">
+                  <li class="flex items-start gap-3 text-gray-400">
+                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span x-text="item" class="leading-relaxed"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+
+            <div>
+              <h5 class="text-white font-semibold mb-4">Technologies Used:</h5>
+              <div class="flex flex-wrap gap-2">
+                <template x-for="tech in currentExperience.technologies" :key="tech">
+                  <span
+                    class="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30"
+                    x-text="tech"
+                  ></span>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var experiences_data = '{{ experiences_data_json| safe }}';
+  
+    var workExperiences = JSON.parse(experiences_data);
+
+
+    function experienceCarousel() {
+      return {
+        selectedExperience: 0,
+        experiences: workExperiences ,
+        selectExperience(index) {
+          this.selectedExperience = index;
+        },
+        get currentExperience() {
+          return this.experiences[this.selectedExperience];
+        },
+        init() {
+          // You could add any initialization logic here if needed
+        }
+      }
+    }
+  </script>
+</section>
