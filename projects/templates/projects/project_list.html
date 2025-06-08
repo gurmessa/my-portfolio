@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <section id="projects" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                {{ tech_stack }} <span class="text-purple-400">Projects</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
+            <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Cards -->
+            {% for project in projects %}
+                {% include 'projects/project_item.html' %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}

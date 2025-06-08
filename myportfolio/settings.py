@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third-party apps
     'ckeditor',
     'solo',
+    'sorl.thumbnail',
+    'django_filters',
+    # Project-specific apps
     'core',
     'blogs',
+    'projects',
 ]
 
 MIDDLEWARE = [

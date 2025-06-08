@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!-- Main Content -->
+<section class="py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if project.image %}
+        <!-- Project Banner Image -->
+        <div class="relative group mb-10 rounded-xl overflow-hidden shadow-2xl">
+            <img 
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=600&fit=crop" 
+                alt="E-Commerce Platform"
+                class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
+            <div class="absolute bottom-6 left-6">
+                <h2 class="text-4xl font-bold text-white">{{ project.name }}</h2>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- Fallback: Just show the title without image -->
+        <div class="relative flex items-center justify-center rounded-xl shadow-2xl w-full h-20 bg-slate-700/30 backdrop-blur-sm border border-slate-600 text-white font-bold text-lg mb-10">
+            {{ project.name }}
+        </div>
+       {% endif %}
+
+        <!-- Project Details -->
+        <div class="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
+            <div class="space-y-8">
+                <!-- Description -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Description</h3>
+                    <div class="text-gray-300 leading-relaxed">
+                        {{ project.description|safe }}
+                    </div>
+                </div>
+
+                <!-- Technologies -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tech_stack in project.tech_stacks.all %}
+                        <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">{{ tech_stack.name }}</span>
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Key Features</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-300">
+                        {% for feature in project.key_features.all %}
+                        <li>{{ feature.short_description }}</li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    {% if project.demo_link %}
+                    <a href="{{ project.demo_link }}" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex items-center gap-2"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Live Demo
+                    </a>
+                    {% endif %}
+
+                    {% if project.source_code %}
+                    <a href="{{ project.source_code }}" class="border-2 border-purple-400 text-purple-400 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:bg-purple-400 hover:text-white flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        View Code
+                    </a>
+                    {% endif %}
+                </div>
+
+                
+            </div>
+        </div>
+
+                <!-- View All Projects Button -->
+                <div class="text-center mt-12">
+                    <a href="{% url 'projects:project_list' %}" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
+                        View All Projects
+                    </a>
+                </div>
+        
+    </div>
+</section>
+
+{% endblock %}
