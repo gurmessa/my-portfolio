@@ -31,8 +31,13 @@
         <div class="flex-1">
             <h4 class="text-white font-semibold mb-3 text-sm">Technologies:</h4>
             <div class="flex flex-wrap gap-2">
-                {% for tech_stack in project.tech_stacks.all %}
-                    <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">{{ tech_stack.name }}</span>
+                {% for tech_stack in project.tech_stacks.all %} 
+                    <a href="{% url 'projects:project_list'%}?tech_stack={{ tech_stack.name }}" 
+                    class="inline-block transition-transform duration-200 ease-in-out transform hover:scale-105">
+                   <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30 hover:bg-purple-600/30 hover:text-purple-200">
+                     {{ tech_stack.name }}
+                   </span>
+                 </a>
                 {% endfor %}
             </div>
         </div>
