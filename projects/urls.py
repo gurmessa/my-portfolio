@@ -4,8 +4,10 @@ from django.conf.urls.static import static
 
 from . import views
 
-app_name = "core"
+app_name = "projects"
 
 urlpatterns = [
-    path("", views.home, name="home"),
+
 ]
+
+
