@@ -1,0 +1,52 @@
+<div class="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 flex flex-col">
+    <!-- Project Image -->
+    <div class="relative group mb-6">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
+        {% if project.image %}
+        <img src="{{ project.image.url}}"
+             alt="{{ project.name }} Image"
+             class="relative rounded-xl shadow-2xl w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+        {% else %}
+             <img src="https://placehold.co/600x400?text=No+Image+Available" 
+                  alt="No Image Available" 
+                  class="relative rounded-xl shadow-2xl w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+         {% endif %}
+        </div>
+    <!-- Project Details -->
+    <div class="flex-1 flex flex-col space-y-4">
+        <div>
+            <a href="{% url 'projects:project_detail' project.pk %}">
+                <h3 class="text-xl font-bold text-white mb-3 hover:text-gray-300">{{ project.name }}</h3>
+            </a>
+            <div class="text-gray-400 text-sm leading-relaxed">
+                {{ project.description|safe|truncatewords:20 }}
+            </div>
+        </div>
+        <!-- Technologies -->
+        <div class="flex-1">
+            <h4 class="text-white font-semibold mb-3 text-sm">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+                {% for tech_stack in project.tech_stacks.all %}
+                    <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">{{ tech_stack.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Action Buttons -->
+
+        <div class="flex gap-3 pt-4">
+            {% if project.demo_link %}
+            <a href="{{project.demo_link}}"  target="_blank"  class="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex-1 justify-center"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Demo
+            </a>
+            {% endif %}
+
+            {% if project.source_code %}
+            <a href="{{ project.source_code }}" class="flex items-center gap-2 border-2 border-purple-400 text-purple-400 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 hover:bg-purple-400 hover:text-white hover:scale-105 flex-1 justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                Code
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
