@@ -26,7 +26,7 @@
                 @click="selectExperience(index)"
                 :class="selectedExperience === index
                   ? 'w-full text-left p-3 rounded-lg transition-all duration-300 bg-purple-600/20 text-purple-300 border border-purple-500/30'
-                  : 'w-full text-left p-3 rounded-lg transition-all duration-300 text-gray-400 hover:text-gray-300 hover:bg-slate-700/50'"
+                  : 'w-full text-left p-3 rounded-lg transition-all duration-300 text-gray-400 hover:text-gray-300 hover:bg-slate-700/50 border border-transparent'"
               >
                 <div class="font-medium text-sm" x-text="exp.company"></div>
                 <div class="text-xs opacity-75" x-text="exp.position"></div>
@@ -86,16 +86,14 @@
     </div>
   </div>
 
-  <script>
 
-  </script>
 
   <script>
     var experiences_data = '{{ experiences_data_json| safe }}';
   
-  var workExperiences = JSON.parse(experiences_data);
+    var workExperiences = JSON.parse(experiences_data);
 
-  
+
     function experienceCarousel() {
       return {
         selectedExperience: 0,
