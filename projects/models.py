@@ -3,6 +3,11 @@ from ckeditor.fields import RichTextField
 from core.models import TechStack
 
 
+class FeaturedProjectManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(featured=True)
+
+
 class Project(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to="project_images/", blank=True, null=True)
@@ -12,7 +17,10 @@ class Project(models.Model):
     description = RichTextField()
     demo_link = models.URLField(blank=True, null=True)
     source_code = models.URLField(blank=True, null=True)
-    featuted = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
+
+    objects = models.Manager()  # Default manager
+    featured_projects = FeaturedProjectManager()  # Custom manager for featured projects
 
     @property
     def is_open_source(self):
