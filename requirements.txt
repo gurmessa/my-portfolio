@@ -2,3 +2,5 @@ black==25.1.0
 Django==5.2.2
 django-ckeditor==6.7.2
 django-solo==2.4.0
+factory_boy==3.3.3
+pillow==11.2.1
