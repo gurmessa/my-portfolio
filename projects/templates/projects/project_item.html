@@ -1,11 +1,16 @@
+{% load thumbnail %}
+
 <div class="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 flex flex-col">
     <!-- Project Image -->
     <div class="relative group mb-6">
         <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
         {% if project.image %}
-        <img src="{{ project.image.url}}"
-             alt="{{ project.name }} Image"
-             class="relative rounded-xl shadow-2xl w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+            {% thumbnail project.image "300x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"
+                    class="relative rounded-xl shadow-2xl w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                >
+            {% endthumbnail %}
+            
         {% else %}
              <img src="https://placehold.co/600x400?text=No+Image+Available" 
                   alt="No Image Available" 
