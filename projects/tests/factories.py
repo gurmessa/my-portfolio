@@ -20,6 +20,7 @@ class ProjectFactory(DjangoModelFactory):
     description = factory.Faker("paragraph")
     demo_link = factory.Faker("url")
     source_code = factory.Faker("url")
+    featured = factory.Faker("boolean", chance_of_getting_true=50)
 
     @factory.post_generation
     def tech_stacks(self, create, extracted, **kwargs):
