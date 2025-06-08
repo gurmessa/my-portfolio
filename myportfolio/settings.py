@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'solo',
     'core',
     'blogs',
+    'projects',
 ]
 
 MIDDLEWARE = [
