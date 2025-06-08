@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'solo',
     'sorl.thumbnail',
+    'django_filters',
     # Project-specific apps
     'core',
     'blogs',
