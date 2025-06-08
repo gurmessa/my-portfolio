@@ -12,6 +12,7 @@ class Project(models.Model):
     description = RichTextField()
     demo_link = models.URLField(blank=True, null=True)
     source_code = models.URLField(blank=True, null=True)
+    featuted = models.BooleanField(default=False)
 
     @property
     def is_open_source(self):
