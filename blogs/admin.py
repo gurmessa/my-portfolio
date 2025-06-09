@@ -41,10 +41,11 @@ class BlogAdmin(admin.ModelAdmin):
         ),
     )
 
-    actions = ['publish_blogs']
+    actions = ["publish_blogs"]
 
     def publish_blogs(self, request, queryset):
-            for blog in queryset:
-                blog.publish()
-            self.message_user(request, "Selected blogs have been published.")
+        for blog in queryset:
+            blog.publish()
+        self.message_user(request, "Selected blogs have been published.")
+
     publish_blogs.short_description = "Publish selected blogs"

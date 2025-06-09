@@ -16,7 +16,6 @@ class ProjectListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Pass width to template (with default value 0)
         tech_stack = self.request.GET.get("tech_stack", "All")
 
         context["tech_stack"] = tech_stack
