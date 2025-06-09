@@ -1,19 +1,31 @@
 from django.test import TestCase
 from django.urls import reverse
 from blogs.models import Blog
+from blogs.tests.factories import BlogFactory, TagFactory, CategoryFactory
 
 
 class BlogListViewTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Create 10 blog posts for pagination tests
-        number_of_blogs = 10
-        for blog_id in range(number_of_blogs):
-            Blog.objects.create(
-                title=f"Blog {blog_id}",
-                content=f"This is the content of blog {blog_id}",
-                status=Blog.StatusChoices.PUBLISHED,
-            )
+
+    def setUp(self):
+        self.tag_one = TagFactory(name="Test Tag")
+        self.tag_two = TagFactory(name="Another Tag")
+        self.category_one = CategoryFactory(name="Test Category")
+        self.category_two = CategoryFactory(name="Another Category")
+
+        self.blog_category_one_and_tag_one = BlogFactory(
+            category=self.category_one,
+            tags=[
+                self.tag_one,
+            ],
+        )
+        self.blog_category_two = BlogFactory(
+            category=self.category_two,
+        )
+        self.blog_tag_two = BlogFactory(
+            tags=[
+                self.tag_two,
+            ]
+        )
 
     def test_view_url_exists_at_desired_location(self):
         response = self.client.get("/blogs/")
@@ -28,19 +40,47 @@ class BlogListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blogs/blog_list.html")
 
-    def test_pagination_is_ten(self):
-        response = self.client.get(reverse("blogs:blog_list"))
+    def test_filter_by_tag_slug(self):
+        response = self.client.get(
+            reverse("blogs:blog_list") + f"?tag={self.tag_two.name}"
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTrue("is_paginated" in response.context)
-        self.assertTrue(response.context["is_paginated"] == False)
-        self.assertEqual(len(response.context["blogs"]), 10)
+        blogs = response.context["blogs"]
+        self.assertEqual(len(blogs), 1)
+        self.assertEqual(blogs[0].title, self.blog_tag_two.title)
+
+    def test_filter_by_category_slug(self):
+        response = self.client.get(
+            reverse("blogs:blog_list"), {"category": self.category_two.name}
+        )
+        # response = self.client.get(reverse("blogs:blog_list")+f"?category={self.category_two.name}")
+        self.assertEqual(response.status_code, 200)
+        blogs = response.context["blogs"]
+        self.assertEqual(len(blogs), 1)
+        self.assertEqual(blogs[0].title, self.blog_category_two.title)
+
+    def test_filter_no_match(self):
+        response = self.client.get(reverse("blogs:blog_list"), {"tag": "unknown"})
+        self.assertEqual(response.status_code, 200)
+        blogs = response.context["blogs"]
+        self.assertEqual(len(blogs), 0)
+
+    def test_filter_by_tag_and_category(self):
+        response = self.client.get(
+            reverse("blogs:blog_list"),
+            {"tag": self.tag_one.name, "category": self.category_one.name},
+        )
+        self.assertEqual(response.status_code, 200)
+        blogs = response.context["blogs"]
+        self.assertEqual(len(blogs), 1)
+        self.assertEqual(blogs[0].title, self.blog_category_one_and_tag_one.title)
 
 
 class BlogDetailViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create a blog post for detail view tests
-        Blog.objects.create(
+        BlogFactory(
             title="Test Blog",
             slug="test-blog",
             content="This is the content of the test blog",
