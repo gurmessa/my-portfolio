@@ -28,7 +28,7 @@ class TechStackAdmin(admin.ModelAdmin):
 
 class PortfolioProfileAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {"fields": ("full_name", "job_title", "headline", "short_bio")}),
+        (None, {"fields": ("full_name", "job_title", "headline",)}),
         ("About Section", {"fields": ("about_title", "about_description")}),
         (
             "Contact Information",
