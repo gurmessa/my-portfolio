@@ -4,9 +4,11 @@ class="bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-slate-700/50 p
 {% if blog.category %}
 <!-- Category Badge -->
 <div class="mb-4">
-  <span class="px-3 py-1 bg-purple-600/90 text-white text-xs font-semibold rounded-full">
+  <a 
+    href="{% url 'blogs:blog_list'%}?category={{ blog.category.name}}" 
+    class="px-3 py-1 bg-purple-600/90 text-white text-xs font-semibold rounded-full hover:bg-purple-700">
     {{ blog.category.name }}
-  </span>
+  </a>
 </div>
 {% endif %}
 
