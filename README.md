@@ -1,18 +1,3 @@
-# Dependencies
-
-This project uses these libraries:
-
-- **django-filter** – makes filtering querysets easier  
-- **django-solo** – handles single-instance models 
-- **django-ckeditor** – rich text editor in the admin  
-- **django-unfold** – improves the Django admin interface  
-- **factory_boy** – helps create test data  
-- **sorl-thumbnail** – handles image thumbnails
-- **black** – auto-formats Python code  
-- **django-environ** - loads .env settings and converts them to Python types
-
-
-
 # Portfolio website
 
 Portfolio website built using Django, tailwind and Alpine.js
@@ -85,6 +70,19 @@ Follow these steps to set up the project locally:
    ```bash
    python manage.py runserver
    ```
+7. **Update your profile**
+
+   After setting up the project, visit the Django admin panel and update the `PortfolioProfile` model with your own details:
+
+   - Full name  
+   - Job title  
+   - Headline  
+   - About section  
+   - Resume file  
+   - GitHub & LinkedIn links  
+   - Email and phone number  
+
+   This information will be displayed on the portfolio website.
 
 ---
 
