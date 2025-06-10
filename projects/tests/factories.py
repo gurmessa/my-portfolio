@@ -10,11 +10,14 @@ class ProjectFactory(DjangoModelFactory):
         model = Project
 
     name = factory.Faker("sentence", nb_words=3)
+    image = None
+    """
     image = factory.LazyAttribute(
         lambda _: SimpleUploadedFile(
             name="test.jpg", content=b"fake-image-content", content_type="image/jpeg"
         )
     )
+    """
     start_date = factory.Faker("date_this_decade")
     end_date = factory.Faker("date_this_decade")
     description = factory.Faker("paragraph")
