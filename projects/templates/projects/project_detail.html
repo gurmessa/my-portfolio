@@ -1,5 +1,20 @@
 {% extends 'core/base.html' %}
 
+{% block meta %}
+<!-- Page description -->
+<meta name="description" content="{{ project.description|striptags|truncatewords:20 }}">
+
+<!-- Author of the page -->
+<meta name="author" content="{{ portfolio_profile.full_name }}">
+
+<!-- Open Graph tags for social media sharing -->
+<meta property="og:title" content="{{ project.name }}">
+<meta property="og:description"  content="{{ project.description|striptags|truncatewords:20 }}">
+{% if project.image %}
+    <meta property="og:image" content="{{ project.image.url }}">
+{% endif %}
+{% endblock %}
+
 {% block content %}
 
 <!-- Main Content -->

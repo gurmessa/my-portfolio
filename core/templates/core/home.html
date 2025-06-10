@@ -1,5 +1,21 @@
 {% extends 'core/base.html' %}
 
+
+{% block meta %}
+<!-- Page description -->
+<meta name="description" content="{{ portfolio_profile.about_me }}">
+
+<!-- Author of the page -->
+<meta name="author" content="{{ portfolio_profile.full_name }}">
+
+<!-- Open Graph tags for social media sharing -->
+<meta property="og:title" content="{{ portfolio_profile.full_name }}'s Portfolio">
+<meta property="og:type" content="website">
+<meta property="og:description"  content="{{ portfolio_profile.about_description|truncatechars:150 }}">
+
+{% endblock %}
+
+
 {% block content %}
     {% include 'core/hero.html' %}
     {% include 'core/about_me.html' %}

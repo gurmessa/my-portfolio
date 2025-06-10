@@ -1,5 +1,21 @@
 {% extends 'core/base.html' %}
 
+{% block meta %}
+<!-- Page description -->
+<meta name="description" content="{{ blog.content|striptags|truncatewords:20 }}">
+
+<!-- Keywords -->
+<meta name="keywords" content="{{ blog.tags.all|join:", " }}">
+
+<!-- Author of the page -->
+<meta name="author" content="{{ portfolio_profile.full_name }}">
+
+<!-- Open Graph tags for social media sharing -->
+<meta property="og:title" content="{{ blog.title }}">
+<meta property="og:description"  content="{{ blog.content|striptags|truncatewords:20 }}">
+
+{% endblock %}
+
 {% block title %}
 {{ blog.title }}
 {% endblock %}
