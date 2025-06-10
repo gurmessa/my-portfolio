@@ -1,6 +1,7 @@
 black==25.1.0
 Django==5.2.2
 django-ckeditor==6.7.2
+django-environ==0.12.0
 django-filter==25.1
 django-solo==2.4.0
 django-unfold==0.59.0
