@@ -43,3 +43,7 @@ class BlogDetailView(DetailView):
 
     def get_queryset(self):
         return Blog.published.all()
+    
+    def get_context_data(self, **kwargs):
+        self.object.increment_views()
+        return super().get_context_data(**kwargs)
