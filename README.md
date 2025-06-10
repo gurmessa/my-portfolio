@@ -3,6 +3,23 @@
 Portfolio website built using Django, tailwind and Alpine.js
 ---
 
+## Features
+
+- ✅ **Blog system** with CKEditor (rich text editor with code formatting support)  
+- 🎨 **Custom Django admin** interface using `django-unfold`  
+- 💼 Manage **Projects**, **Work Experiences**, and **About Me** sections  
+- 🖼️ **Image thumbnails** generated using `sorl-thumbnail`  
+- 🧪 **Tests** for views and models included  
+- 🏭 **Factory Boy** used to generate test data  
+- 🏷️ **Meta tags** added for SEO on selected pages  
+- 🔁 **Singleton model** (`PortfolioProfile`) to manage site-wide portfolio info  
+- ⚙️ **Environment-specific settings** for production and local development  
+- 🔄 **Context processor** to pass `PortfolioProfile` instance to all templates automatically  
+- 🔍 **Filter views** with `django-filter` for flexible querying  
+- ⚡ **Alpine.js** used for frontend interactivity including carousel, tabs, and navigation drawer  
+
+---
+
 ## Dependencies
 
 This project uses these libraries:
@@ -11,11 +28,10 @@ This project uses these libraries:
 * **django-solo** – handles single-instance models
 * **django-ckeditor** – rich text editor in the admin
 * **django-unfold** – improves the Django admin interface
+* **django-environ** – loads .env settings and converts them to Python types
 * **factory\_boy** – helps create test data
 * **sorl-thumbnail** – handles image thumbnails
 * **black** – auto-formats Python code
-* **django-environ** – loads .env settings and converts them to Python types
-
 ---
 
 ## Installation
