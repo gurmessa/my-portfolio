@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 """
 
 import os
-
+import environ
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myportfolio.settings')
+# Load env
+environ.Env().read_env()
+
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", os.environ.get("DJANGO_SETTINGS_MODULE", "myportfolio.settings.production")
+)
 
 application = get_asgi_application()

@@ -1,5 +1,15 @@
 {% extends 'core/base.html' %}
 
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+<style>
+  .hljs {
+    background: rgba(30, 27, 75, 0.3); /* Tailwind's bg-purple-900 at 50% */
+    
+  }
+  </style>
+{% endblock %}
+
 {% block content %}
 <section id="blogs" class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,4 +32,9 @@
     </div>
   </section>
   
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
 {% endblock %}

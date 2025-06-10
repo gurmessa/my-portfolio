@@ -16,7 +16,6 @@ ENV.bak/
 *.pot
 *.mo
 *.po
-/manage.py
 /db.sqlite3
 /media/
 /staticfiles/
@@ -55,4 +54,4 @@ docs/_build/
 .env.test.local
 .env.production.local
 .env.docker
-.env.example
+env.example
