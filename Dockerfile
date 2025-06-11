@@ -25,8 +25,4 @@ RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]
 
 
-
-
 CMD ["gunicorn", "--bind", "0.0.0.0:8081", "myportfolio.wsgi:application"]
-
-

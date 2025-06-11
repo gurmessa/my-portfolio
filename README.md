@@ -17,7 +17,7 @@ Portfolio website built using Django, tailwind and Alpine.js
 - 🔄 **Context processor** to pass `PortfolioProfile` instance to all templates automatically  
 - 🔍 **Filter views** with `django-filter` for flexible querying  
 - ⚡ **Alpine.js** used for frontend interactivity including carousel, tabs, and navigation drawer  
-
+- 🐳 **Docker & Docker Compose** for production-ready deployment
 ---
 
 ## Dependencies
@@ -32,6 +32,7 @@ This project uses these libraries:
 * **factory\_boy** – helps create test data
 * **sorl-thumbnail** – handles image thumbnails
 * **black** – auto-formats Python code
+* **gunicorn** - production-ready WSGI HTTP server
 ---
 
 ## Installation
