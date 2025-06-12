@@ -37,7 +37,7 @@ This project uses these libraries:
 
 ## Installation
 
-Follow these steps to set up the project locally:
+### Option 1: Local Setup
 
 1. **Clone the repository**
 
@@ -100,6 +100,37 @@ Follow these steps to set up the project locally:
    - Email and phone number  
 
    This information will be displayed on the portfolio website.
+
+
+### Option 2: Using Docker Compose (Production)
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/gurmessa/my-portfolio.git
+   cd my-portfolio
+   ```
+
+2. **Copy and edit the environment file**
+
+   ```bash
+   cp env.example .env
+   ```
+
+3. **Build and run the containers**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+   This will:
+
+   * Build the Docker image
+   * Apply migrations
+   * Collect staticfiles
+   * Run the Django development server at `http://localhost:8081`
+4. **Update your profile via the admin panel**
+
 
 ---
 
