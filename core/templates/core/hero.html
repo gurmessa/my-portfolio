@@ -30,7 +30,7 @@
 
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
         <a
-          href="#"
+          href="{% url 'core:home' %}#projects"
           class="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex items-center gap-2"
         >
           View My Work
@@ -53,8 +53,8 @@
         </a>
         {% endif %}
       </div>
-      {% if portfolio_profile.github_profile_link %}
       <div class="flex justify-center space-x-6">
+      {% if portfolio_profile.github_profile_link %}
         <a
         href="{{ portfolio_profile.github_profile_link }}"
         target="_blank"

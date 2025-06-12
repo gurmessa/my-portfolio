@@ -6,5 +6,6 @@ django-filter==25.1
 django-solo==2.4.0
 django-unfold==0.59.0
 factory_boy==3.3.3
+gunicorn==23.0.0
 pillow==11.2.1
 sorl-thumbnail==12.11.0
