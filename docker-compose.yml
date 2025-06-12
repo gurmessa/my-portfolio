@@ -7,7 +7,7 @@ services:
       #- .:/app  # this mounts the current directory to /app in the container
       - ./media_data:/app/media         # for uploaded media files
       - ./static_data:/app/staticfiles  # for collected static files
-      - sqlite_data:/app/db
+      - ./sqlite_data:/app/db
     ports:
       - "8081:8081"
     env_file:
