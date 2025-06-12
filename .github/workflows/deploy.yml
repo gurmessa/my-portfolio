@@ -1,0 +1,23 @@
+name: Deploy on Merge to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_SERVER_IP }}
+          username: ${{ secrets.DEPLOY_SERVER_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.DEPLOY_PROJECT_PATH }}
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
+            sudo nginx -s reload || echo "Nginx not running or no changes"
