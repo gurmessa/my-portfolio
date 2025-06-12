@@ -61,6 +61,9 @@ class WorkExperience(models.Model):
 
     def __str__(self):
         return f"{self.role} at {self.company_name}"
+    
+    class Meta:
+        ordering = ["-start_date"]
 
 
 class WorkExperienceItem(models.Model):
