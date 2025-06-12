@@ -21,7 +21,7 @@ class TechStackCategoryAdmin(admin.ModelAdmin):
 
 
 class TechStackAdmin(admin.ModelAdmin):
-    list_display = ("name", "category", "image_url")
+    list_display = ("name", "category", )
     search_fields = ("name",)
     list_filter = ("category",)
 

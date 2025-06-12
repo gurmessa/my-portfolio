@@ -18,6 +18,9 @@ Portfolio website built using Django, tailwind and Alpine.js
 - 🔍 **Filter views** with `django-filter` for flexible querying  
 - ⚡ **Alpine.js** used for frontend interactivity including carousel, tabs, and navigation drawer  
 - 🐳 **Docker & Docker Compose** for production-ready deployment
+- 🧪 **Continuous Integration (CI)**: Automated tests run on every pull request via GitHub Actions 
+- 🚀 **Continuous Deployment (CD)**: auto-deploys to production via GitHub Actions with every push to `main`
+
 ---
 
 ## Dependencies

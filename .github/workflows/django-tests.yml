@@ -1,0 +1,52 @@
+name: Django Tests
+
+on:
+  pull_request:
+    branches:
+      - main  # Change if targeting a different branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gcc
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create db directory for SQLite
+        run: mkdir -p db
+
+      - name: Create .env file
+        run: |
+          echo "SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+          echo "DEBUG=True" >> .env
+
+      - name: Load environment variables from .env
+        run: |
+          export $(grep -v '^#' .env | xargs)
+
+      - name: Apply database migrations (if needed)
+        env:
+          DJANGO_SETTINGS_MODULE: myportfolio.settings.local
+        run: |
+          python manage.py migrate --noinput
+
+      - name: Run Django Tests
+        env:
+          DJANGO_SETTINGS_MODULE: myportfolio.settings.local
+        run: |
+          python manage.py test
