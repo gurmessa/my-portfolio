@@ -17,6 +17,7 @@ ENV.bak/
 *.mo
 *.po
 /db.sqlite3
+/db/db.sqlite3
 /media/
 /staticfiles/
 /local_settings.py
