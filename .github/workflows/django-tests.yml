@@ -27,6 +27,11 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create .env file
+        run: |
+          echo "SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+          echo "DEBUG=True" >> .env
+          
       - name: Load environment variables from .env
         run: |
           export $(grep -v '^#' .env | xargs)
