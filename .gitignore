@@ -20,6 +20,8 @@ ENV.bak/
 /db/db.sqlite3
 /media/
 /staticfiles/
+/static_data/
+/media_data/
 /local_settings.py
 
 # IDE / Editor
