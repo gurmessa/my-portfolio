@@ -31,7 +31,7 @@ class Project(models.Model):
 
 
 class ProjectKeyFeature(models.Model):
-    short_description = models.TextField()
+    short_description = models.CharField(max_length=255)
     project = models.ForeignKey(
         Project, related_name="key_features", on_delete=models.CASCADE
     )
