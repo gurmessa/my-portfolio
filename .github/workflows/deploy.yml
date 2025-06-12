@@ -12,9 +12,9 @@ jobs:
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.DEPLOY_SERVER_IP }}
-          username: ${{ secrets.DEPLOY_SERVER_USER }}
-          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
           script: |
             cd ${{ secrets.DEPLOY_PROJECT_PATH }}
             git pull origin main
