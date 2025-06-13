@@ -1,3 +1,4 @@
+from django.utils.text import slugify
 from django.db import models
 from ckeditor.fields import RichTextField
 from core.models import TechStack
@@ -10,6 +11,7 @@ class FeaturedProjectManager(models.Manager):
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=100, blank=True)
     image = models.ImageField(upload_to="project_images/", blank=True, null=True)
     tech_stacks = models.ManyToManyField(TechStack, related_name="projects", blank=True)
     start_date = models.DateField(blank=True, null=True)
@@ -28,6 +30,11 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class ProjectKeyFeature(models.Model):
