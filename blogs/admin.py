@@ -27,18 +27,6 @@ class BlogAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("title", "slug", "content", "category", "tags")}),
-        (
-            "Status & Dates",
-            {
-                "fields": ("status", "published_date"),
-            },
-        ),
-        (
-            "Statistics",
-            {
-                "fields": ("view_count",),
-            },
-        ),
     )
 
     actions = ["publish_blogs"]
