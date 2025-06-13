@@ -11,7 +11,7 @@ class FeaturedProjectManager(models.Manager):
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to="project_images/", blank=True, null=True)
     tech_stacks = models.ManyToManyField(TechStack, related_name="projects", blank=True)
     start_date = models.DateField(blank=True, null=True)
