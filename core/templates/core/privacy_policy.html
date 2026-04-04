@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block content %}
+<section class="py-20 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        Privacy <span class="text-purple-400">Policy</span>
+      </h1>
+    </div>
+
+    <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
+      {% if portfolio_profile.privacy_policy %}
+        <div class="text-gray-300 leading-relaxed whitespace-pre-line">
+          {{ portfolio_profile.privacy_policy }}
+        </div>
+      {% else %}
+        <p class="text-gray-400 text-center">Privacy policy has not been set yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

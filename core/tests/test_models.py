@@ -60,7 +60,24 @@ class PortfolioProfileModelTest(TestCase):
         self.assertEqual(profile.email, "johndoe@example.com")
         self.assertEqual(profile.phone, "1234567890")
 
-    def test_only_one_portfolio_profile_instance(self):
+    def test_portfolio_profile_terms_of_service_and_privacy_policy(self):
+        profile = PortfolioProfile.objects.create(
+            full_name="John Doe",
+            terms_of_service="These are the terms of service.",
+            privacy_policy="This is the privacy policy.",
+        )
+        self.assertEqual(profile.terms_of_service, "These are the terms of service.")
+        self.assertEqual(profile.privacy_policy, "This is the privacy policy.")
+
+    def test_portfolio_profile_terms_and_privacy_default_to_none(self):
+        field_tos = PortfolioProfile._meta.get_field("terms_of_service")
+        field_pp = PortfolioProfile._meta.get_field("privacy_policy")
+        self.assertTrue(field_tos.null)
+        self.assertTrue(field_tos.blank)
+        self.assertTrue(field_pp.null)
+        self.assertTrue(field_pp.blank)
+
+
         PortfolioProfile.objects.create(
             full_name="John Doe",
             job_title="Software Engineer",

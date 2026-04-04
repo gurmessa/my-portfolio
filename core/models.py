@@ -42,6 +42,8 @@ class PortfolioProfile(SingletonModel):
     linkedin_profile_link = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
+    terms_of_service = models.TextField(blank=True, null=True)
+    privacy_policy = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.full_name if self.full_name else "Portfolio Profile"

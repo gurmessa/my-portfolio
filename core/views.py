@@ -5,6 +5,14 @@ from core.utils import get_experiences_data_json
 from projects.models import Project
 
 
+def terms_of_service(request):
+    return render(request, "core/terms_of_service.html")
+
+
+def privacy_policy(request):
+    return render(request, "core/privacy_policy.html")
+
+
 def home(request): 
     tech_stack_categories = TechStackCategory.objects.all().prefetch_related(
         "tech_stacks"
