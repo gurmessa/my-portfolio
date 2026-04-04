@@ -48,3 +48,53 @@ class HomeViewTest(TestCase):
         self.assertIn("projects", response.context)
         self.assertEqual(len(response.context["projects"]), 1)
         self.assertIn(featured_project, response.context["projects"])
+
+
+class TermsOfServiceViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_terms_of_service_view_status_code(self):
+        response = self.client.get(reverse("core:terms_of_service"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_terms_of_service_view_uses_correct_template(self):
+        response = self.client.get(reverse("core:terms_of_service"))
+        self.assertTemplateUsed(response, "core/terms_of_service.html")
+
+    def test_terms_of_service_displays_content(self):
+        PortfolioProfile.objects.create(
+            full_name="John Doe",
+            terms_of_service="These are the terms of service.",
+        )
+        response = self.client.get(reverse("core:terms_of_service"))
+        self.assertContains(response, "These are the terms of service.")
+
+    def test_terms_of_service_displays_placeholder_when_empty(self):
+        response = self.client.get(reverse("core:terms_of_service"))
+        self.assertContains(response, "Terms of service have not been set yet.")
+
+
+class PrivacyPolicyViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_privacy_policy_view_status_code(self):
+        response = self.client.get(reverse("core:privacy_policy"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_privacy_policy_view_uses_correct_template(self):
+        response = self.client.get(reverse("core:privacy_policy"))
+        self.assertTemplateUsed(response, "core/privacy_policy.html")
+
+    def test_privacy_policy_displays_content(self):
+        PortfolioProfile.objects.create(
+            full_name="John Doe",
+            privacy_policy="This is the privacy policy.",
+        )
+        response = self.client.get(reverse("core:privacy_policy"))
+        self.assertContains(response, "This is the privacy policy.")
+
+    def test_privacy_policy_displays_placeholder_when_empty(self):
+        response = self.client.get(reverse("core:privacy_policy"))
+        self.assertContains(response, "Privacy policy has not been set yet.")
