@@ -42,6 +42,7 @@ class PortfolioProfileAdmin(admin.ModelAdmin):
                 )
             },
         ),
+        ("Legal", {"fields": ("terms_of_service", "privacy_policy")}),
     )
 
 
