@@ -46,7 +46,7 @@ This project uses these libraries:
 
    ```bash
    git clone https://github.com/gurmessa/my-portfolio.git
-   cd your-repo
+   cd my-portfolio
    ```
 
 2. **Create and activate a virtual environment**
